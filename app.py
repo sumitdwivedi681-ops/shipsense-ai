@@ -10,7 +10,8 @@ import pandas as pd
 import numpy as np
 import os
 
-app = Flask(__name__)
+# Initialize Flask to serve static files from the root directory
+app = Flask(__name__, static_url_path='', static_folder='.')
 CORS(app)
 
 # ── Load the trained model ──────────────────────────────────────────────────
@@ -165,8 +166,7 @@ def model_info():
     })
 
 
-# ── Serve static files from the same directory ─────────────────────────────
-app.static_folder = os.path.dirname(__file__) or "."
+# ── Serve static files ─────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
